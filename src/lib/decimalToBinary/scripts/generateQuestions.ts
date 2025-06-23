@@ -31,7 +31,7 @@ function generateQuestions(level: number): BinaryQuestion {
 
     // Generiere drei einzigartige Zahlen
     while (numbers.size < 3) {
-        numbers.add(Math.floor(Math.random() * (maxNumber + 1)));
+        numbers.add(Math.floor(Math.random() * (maxNumber) + 1));
     }
 
     // Konvertiere das Set zurück in ein Array

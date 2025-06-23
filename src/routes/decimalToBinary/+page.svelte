@@ -7,6 +7,8 @@
     import BinaryInput from "$lib/decimalToBinary/components/BinaryInput.svelte";
     import QuestionCard from "$lib/decimalToBinary/components/QuestionCard.svelte";
     import { onMount } from "svelte";
+    import { Confetti } from 'svelte-canvas-confetti';
+    import { browser } from '$app/environment';
 
     let questions: QuestionCardData[] = $state([]);
     let currentQuestionIndex = $state(0);
@@ -15,6 +17,7 @@
     let isSumEnabled = $state(false);
     let isInputEnabled = $state(true);
     let areIndicatorsEnabled = $state(false);
+    let sendConfetti = $state(false);
 
     let binaryInput: BinaryInput;
 
@@ -60,11 +63,28 @@
         }
     }
 
+    $effect(() => {
+        if(score % 25 == 0){
+            confetti();
+        }
+    })
+
+    function confetti(){
+        sendConfetti = true;
+        setTimeout(() => {
+        sendConfetti = false;
+        }, 5000);
+    }
+
     onMount(() => {
         getQuestions();
         currentQuestion.isOn = true;
     });
 </script>
+
+{#if browser && sendConfetti}
+<Confetti origin={[window.innerWidth - 50, 100]} angle={180} force={30} spread={45} particleCount={score} />
+{/if}
 
 
 <div class="w-full flex justify-end">
