@@ -61,7 +61,7 @@
                 disabled={!data.enabled}
                 onclick={() => handleClick(index)}
             >
-                {choice.value}
+                <span>{choice.value}<sub>10</sub></span>
             </button>
         </div>
     {/each}

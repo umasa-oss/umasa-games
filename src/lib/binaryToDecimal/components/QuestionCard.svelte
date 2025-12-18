@@ -11,7 +11,7 @@
     <div class="swap-on card bg-base-200 text-primary-content shadow-xl">
         <div class="card-body mx-4 md:mx-8">
             <h2 class="card-title justify-center text-base-content font-mono text-2xl">
-                {data.question}
+                <span>{data.question}<sub>2</sub></span>
             </h2>
         </div>
     </div>

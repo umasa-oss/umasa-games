@@ -75,14 +75,14 @@
             </label>
             {#if data.areIndicatorsEnabled}
                 <p class="w-full flex justify-center">
-                    {Math.pow(2, data.bitCount - 1 - index)}
+                    <span>{Math.pow(2, data.bitCount - 1 - index)}<sub class="text-xs">10</sub></span>
                 </p>
             {/if}
         </div>
     {/each}
     {#if data.isSumEnabled}
         <p class="text-2xl flex items-center justify-center w-20 h-20">
-            {decimalValue}
+            <span>{decimalValue}<sub class="text-sm">10</sub></span>
         </p>
     {/if}
 </div>
