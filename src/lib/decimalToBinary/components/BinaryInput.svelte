@@ -1,5 +1,7 @@
 <script lang="ts">
     import { binaryArrayToDecimal } from "../scripts/binaryUtils";
+    import { onMount, onDestroy } from "svelte";
+    import { browser } from "$app/environment";
 
     interface BinaryInputProps {
         areIndicatorsEnabled: boolean;
@@ -18,6 +20,30 @@
         decimalValue = 0;
         data.onUpdatedValue(decimalValue);
     }
+
+    function handleKeyPress(event: KeyboardEvent) {
+        if (!data.enabled) return;
+        
+        const key = event.key;
+        const num = parseInt(key);
+        
+        if (!isNaN(num) && num >= 1 && num <= 9 && num <= data.bitCount) {
+            const targetIndex = data.bitCount - num;
+            values[targetIndex] = !values[targetIndex];
+        }
+    }
+
+    onMount(() => {
+        if (browser) {
+        window.addEventListener('keydown', handleKeyPress);
+        }
+    });
+
+    onDestroy(() => {
+        if (browser) {
+        window.removeEventListener('keydown', handleKeyPress);
+        }
+    });
 
     $effect(() => {
         let value = binaryArrayToDecimal(values.map((v) => (v ? 1 : 0)));

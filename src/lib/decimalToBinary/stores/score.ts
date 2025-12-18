@@ -1,4 +1,3 @@
-// src/lib/stores/score.ts
 import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
 
@@ -10,7 +9,6 @@ const initial = browser
 
 const score = writable(initial);
 
-// Nur im Browser speichern
 if (browser) {
 	score.subscribe((value) => {
 		localStorage.setItem(localKey, value.toString());
