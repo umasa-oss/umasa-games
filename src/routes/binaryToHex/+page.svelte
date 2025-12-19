@@ -2,41 +2,42 @@
 
 <script lang="ts">
 	import type { QuestionData } from '$lib/components/QuestionCard.svelte';
-	import { default as scoreObject } from '$lib/games/decimalToBinary/score';
-	import { generateQuestions } from '$lib/games/decimalToBinary/generateQuestions';
-	import BinaryInput from '$lib/components/BinaryInput.svelte';
+	import { default as scoreObject } from '$lib/games/binaryToHex/score';
+	import {
+		generateQuestions,
+		generateHexChoices
+	} from '$lib/games/binaryToHex/generateQuestions';
+	import type { Choice } from '$lib/components/ChoiceInput.svelte';
+	import ChoiceInput from '$lib/components/ChoiceInput.svelte';
 	import QuestionCard from '$lib/components/QuestionCard.svelte';
 	import { onMount } from 'svelte';
 	import { Confetti } from 'svelte-canvas-confetti';
 	import { browser } from '$app/environment';
-	import { decimalToBinary } from '$lib/utils/conversionUtils';
 
 	let questions: QuestionData[] = $state([]);
 	let currentQuestionIndex = $state(0);
 	let currentQuestion = $derived(questions[currentQuestionIndex]);
-	let bitCount = $state(0);
-	let isSumEnabled = $state(false);
 	let isInputEnabled = $state(true);
-	let areIndicatorsEnabled = $state(false);
 	let sendConfetti = $state(false);
+	let hexChoices: Choice[] = $state([]);
+	let shakeChoices = $state(false);
 
-	let binaryInput: BinaryInput;
+	let choiceInputComponent: ChoiceInput;
 
 	let score = $derived($scoreObject);
 
 	function getQuestions() {
-		console.log('Generating questions with score: ', score);
 		let nextLevel = generateQuestions(score);
-		bitCount = nextLevel.bitCount;
-		isSumEnabled = nextLevel.isSumEnabled;
-		areIndicatorsEnabled = nextLevel.areIndicatorsEnabled;
 		for (let i = 0; i < 3; i++) {
 			questions[i] = {
-				question: nextLevel.numbers[i].toString(),
+				question: nextLevel.binaryNumbers[i],
 				isOn: false,
 				isCorrect: false,
-				base: 'decimal'
+				base: 'binary'
 			};
+		}
+		if (questions[0]) {
+			hexChoices = generateHexChoices(questions[0].question);
 		}
 	}
 
@@ -45,32 +46,36 @@
 			if (currentQuestionIndex >= questions.length - 1) {
 				getQuestions();
 			}
-			binaryInput.reset();
+			choiceInputComponent.reset();
 			isInputEnabled = true;
 			currentQuestionIndex = (currentQuestionIndex + 1) % questions.length;
 			currentQuestion.isOn = true;
+			hexChoices = generateHexChoices(currentQuestion.question);
 		}, 1000);
 	}
 
-	function onUpdatedValue(binaryString: string) {
-		if (currentQuestion) {
-			const targetBinary = decimalToBinary(parseInt(currentQuestion.question)).padStart(
-				bitCount,
-				'0'
-			);
-			if (binaryString === targetBinary) {
-				console.log('Correct answer!');
-				isInputEnabled = false;
-				currentQuestion.isCorrect = true;
-				currentQuestion.isOn = false;
-				scoreObject.update((s) => s + 1);
-				nextQuestion();
-			}
+	function onSelectedValue(value: string, isCorrect: boolean) {
+		if (currentQuestion && isCorrect) {
+			isInputEnabled = false;
+			currentQuestion.isCorrect = true;
+			currentQuestion.isOn = false;
+			scoreObject.update((s) => s + 1);
+			nextQuestion();
+		} else {
+			isInputEnabled = false;
+			currentQuestion.isCorrect = false;
+			shakeChoices = true;
+			scoreObject.update((s) => Math.max(0, s - 1));
+			setTimeout(() => {
+				shakeChoices = false;
+				choiceInputComponent.reset();
+				isInputEnabled = true;
+			}, 500);
 		}
 	}
 
 	$effect(() => {
-		if (score % 25 == 0) {
+		if (score % 25 == 0 && score > 0) {
 			confetti();
 		}
 	});
@@ -111,15 +116,13 @@
 	<div></div>
 	<div class="basis-1/2 flex justify-center">
 		<div class="mt-48 w-full">
-			<div class="w-full flex justify-center">
-				<BinaryInput
-					bind:this={binaryInput}
-					{areIndicatorsEnabled}
-					{bitCount}
+			<div class="w-full flex justify-center" class:animate-shake={shakeChoices}>
+				<ChoiceInput
+					bind:this={choiceInputComponent}
+					choices={hexChoices}
 					enabled={isInputEnabled}
-					{isSumEnabled}
-					sumBase="decimal"
-					{onUpdatedValue}
+					base="hex"
+					{onSelectedValue}
 				/>
 			</div>
 			<div class="mt-8 space-x-4 flex justify-center">

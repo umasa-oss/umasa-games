@@ -2,14 +2,14 @@
 
 <script lang="ts">
 	import type { QuestionData } from '$lib/components/QuestionCard.svelte';
-	import { default as scoreObject } from '$lib/games/decimalToBinary/score';
-	import { generateQuestions } from '$lib/games/decimalToBinary/generateQuestions';
+	import { default as scoreObject } from '$lib/games/hexToBinary/score';
+	import { generateQuestions } from '$lib/games/hexToBinary/generateQuestions';
 	import BinaryInput from '$lib/components/BinaryInput.svelte';
 	import QuestionCard from '$lib/components/QuestionCard.svelte';
 	import { onMount } from 'svelte';
 	import { Confetti } from 'svelte-canvas-confetti';
 	import { browser } from '$app/environment';
-	import { decimalToBinary } from '$lib/utils/conversionUtils';
+	import { hexToBinary } from '$lib/utils/conversionUtils';
 
 	let questions: QuestionData[] = $state([]);
 	let currentQuestionIndex = $state(0);
@@ -25,17 +25,16 @@
 	let score = $derived($scoreObject);
 
 	function getQuestions() {
-		console.log('Generating questions with score: ', score);
 		let nextLevel = generateQuestions(score);
 		bitCount = nextLevel.bitCount;
 		isSumEnabled = nextLevel.isSumEnabled;
 		areIndicatorsEnabled = nextLevel.areIndicatorsEnabled;
 		for (let i = 0; i < 3; i++) {
 			questions[i] = {
-				question: nextLevel.numbers[i].toString(),
+				question: nextLevel.hexNumbers[i],
 				isOn: false,
 				isCorrect: false,
-				base: 'decimal'
+				base: 'hex'
 			};
 		}
 	}
@@ -54,12 +53,8 @@
 
 	function onUpdatedValue(binaryString: string) {
 		if (currentQuestion) {
-			const targetBinary = decimalToBinary(parseInt(currentQuestion.question)).padStart(
-				bitCount,
-				'0'
-			);
+			const targetBinary = hexToBinary(currentQuestion.question).padStart(bitCount, '0');
 			if (binaryString === targetBinary) {
-				console.log('Correct answer!');
 				isInputEnabled = false;
 				currentQuestion.isCorrect = true;
 				currentQuestion.isOn = false;
@@ -118,7 +113,7 @@
 					{bitCount}
 					enabled={isInputEnabled}
 					{isSumEnabled}
-					sumBase="decimal"
+					sumBase="hex"
 					{onUpdatedValue}
 				/>
 			</div>

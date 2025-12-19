@@ -14,6 +14,30 @@
 			tags: ['Mathematik', 'Binär', 'Umrechnung'],
 			image: '/images/decimal-to-binary.svg',
 			href: '/decimalToBinary'
+		},
+		{
+			title: 'Binär zu Hexadezimal',
+			tags: ['Mathematik', 'Hexadezimal', 'Umrechnung'],
+			image: '/images/binary-to-hex.svg',
+			href: '/binaryToHex'
+		},
+		{
+			title: 'Hexadezimal zu Binär',
+			tags: ['Mathematik', 'Hexadezimal', 'Umrechnung'],
+			image: '/images/hex-to-binary.svg',
+			href: '/hexToBinary'
+		},
+		{
+			title: 'Hexadezimal zu Dezimal',
+			tags: ['Mathematik', 'Hexadezimal', 'Umrechnung'],
+			image: '/images/hex-to-decimal.svg',
+			href: '/hexToDecimal'
+		},
+		{
+			title: 'Dezimal zu Hexadezimal',
+			tags: ['Mathematik', 'Hexadezimal', 'Umrechnung'],
+			image: '/images/decimal-to-hex.svg',
+			href: '/decimalToHex'
 		}
 	];
 </script>
