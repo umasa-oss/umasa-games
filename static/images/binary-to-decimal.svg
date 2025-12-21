@@ -9,5 +9,4 @@
   <text x="200" y="120" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">1010<tspan font-size="24" baseline-shift="sub">2</tspan></text>
   <text x="200" y="160" font-family="Arial, sans-serif" font-size="36" fill="white" text-anchor="middle" opacity="0.8">→</text>
   <text x="200" y="210" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="white" text-anchor="middle">10<tspan font-size="24" baseline-shift="sub">10</tspan></text>
-  <text x="200" y="250" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle" opacity="0.9">Binär → Dezimal</text>
 </svg>

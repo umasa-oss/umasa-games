@@ -5,37 +5,43 @@
 	const games = [
 		{
 			title: 'Binär zu Dezimal',
-			tags: ['Mathematik', 'Binär', 'Umrechnung'],
+			tags: ['Binär', 'Dezimal'],
 			image: '/images/binary-to-decimal.svg',
 			href: '/binaryToDecimal'
 		},
 		{
 			title: 'Dezimal zu Binär',
-			tags: ['Mathematik', 'Binär', 'Umrechnung'],
+			tags: ['Binär', 'Dezimal'],
 			image: '/images/decimal-to-binary.svg',
 			href: '/decimalToBinary'
 		},
 		{
+			title: 'Binär Addition',
+			tags: ['Binär', 'Addition'],
+			image: '/images/binary-addition.svg',
+			href: '/binaryAddition'
+		},
+		{
 			title: 'Binär zu Hexadezimal',
-			tags: ['Mathematik', 'Hexadezimal', 'Umrechnung'],
+			tags: ['Hexadezimal', 'Binär'],
 			image: '/images/binary-to-hex.svg',
 			href: '/binaryToHex'
 		},
 		{
 			title: 'Hexadezimal zu Binär',
-			tags: ['Mathematik', 'Hexadezimal', 'Umrechnung'],
+			tags: ['Hexadezimal', 'Binär'],
 			image: '/images/hex-to-binary.svg',
 			href: '/hexToBinary'
 		},
 		{
 			title: 'Hexadezimal zu Dezimal',
-			tags: ['Mathematik', 'Hexadezimal', 'Umrechnung'],
+			tags: ['Hexadezimal', 'Dezimal'],
 			image: '/images/hex-to-decimal.svg',
 			href: '/hexToDecimal'
 		},
 		{
 			title: 'Dezimal zu Hexadezimal',
-			tags: ['Mathematik', 'Hexadezimal', 'Umrechnung'],
+			tags: ['Dezimal', 'Hexadezimal'],
 			image: '/images/decimal-to-hex.svg',
 			href: '/decimalToHex'
 		}
