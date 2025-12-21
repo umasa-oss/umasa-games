@@ -1,5 +1,13 @@
 <svelte:options runes={true} />
 
+<svelte:head>
+	<title>Hexadezimal zu Binär | Umasa Games</title>
+	<meta name="description" content="Übe Hexadezimal zu Binär Umrechnungen. Lerne spielerisch, wie man Hexadezimalzahlen in Binärzahlen umwandelt." />
+	<meta property="og:title" content="Hexadezimal zu Binär | Umasa Games" />
+	<meta property="og:description" content="Übe Hexadezimal zu Binär Umrechnungen spielerisch." />
+	<meta name="twitter:card" content="summary" />
+</svelte:head>
+
 <script lang="ts">
 	import type { QuestionData } from '$lib/components/QuestionCard.svelte';
 	import { default as scoreObject } from '$lib/games/hexToBinary/score';

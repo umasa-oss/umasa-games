@@ -1,5 +1,13 @@
 <svelte:options runes={true} />
 
+<svelte:head>
+	<title>Binär Addition | Umasa Games</title>
+	<meta name="description" content="Übe Binär Addition. Lerne spielerisch, wie man zwei Binärzahlen addiert." />
+	<meta property="og:title" content="Binär Addition | Umasa Games" />
+	<meta property="og:description" content="Übe Binär Addition spielerisch." />
+	<meta name="twitter:card" content="summary" />
+</svelte:head>
+
 <script lang="ts">
 	import { default as scoreObject } from '$lib/games/binaryAddition/score';
 	import { generateQuestions } from '$lib/games/binaryAddition/generateQuestions';

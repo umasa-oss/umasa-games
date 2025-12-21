@@ -1,5 +1,13 @@
 <svelte:options runes={true} />
 
+<svelte:head>
+	<title>Dezimal zu Hexadezimal | Umasa Games</title>
+	<meta name="description" content="Übe Dezimal zu Hexadezimal Umrechnungen. Lerne spielerisch, wie man Dezimalzahlen in Hexadezimalzahlen umwandelt." />
+	<meta property="og:title" content="Dezimal zu Hexadezimal | Umasa Games" />
+	<meta property="og:description" content="Übe Dezimal zu Hexadezimal Umrechnungen spielerisch." />
+	<meta name="twitter:card" content="summary" />
+</svelte:head>
+
 <script lang="ts">
 	import type { QuestionData } from '$lib/components/QuestionCard.svelte';
 	import { default as scoreObject } from '$lib/games/decimalToHex/score';

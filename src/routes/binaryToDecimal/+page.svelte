@@ -1,5 +1,13 @@
 <svelte:options runes={true} />
 
+<svelte:head>
+	<title>Binär zu Dezimal | Umasa Games</title>
+	<meta name="description" content="Übe Binär zu Dezimal Umrechnungen. Lerne spielerisch, wie man Binärzahlen in Dezimalzahlen umwandelt." />
+	<meta property="og:title" content="Binär zu Dezimal | Umasa Games" />
+	<meta property="og:description" content="Übe Binär zu Dezimal Umrechnungen spielerisch." />
+	<meta name="twitter:card" content="summary" />
+</svelte:head>
+
 <script lang="ts">
 	import type { QuestionData } from '$lib/components/QuestionCard.svelte';
 	import { default as scoreObject } from '$lib/games/binaryToDecimal/score';

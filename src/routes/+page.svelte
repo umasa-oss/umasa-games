@@ -1,3 +1,15 @@
+<svelte:head>
+	<title>Umasa Games</title>
+	<meta name="description" content="Lerne und übe Binär-, Dezimal- und Hexadezimal-Umrechnungen spielerisch. Interaktive Mathe-Spiele für Zahlensysteme und binäre Arithmetik." />
+	<meta name="keywords" content="Binär, Dezimal, Hexadezimal, Mathe, Zahlensysteme, Umrechnung, Addition, Lernen" />
+	<meta property="og:title" content="Umasa Games" />
+	<meta property="og:description" content="Lerne und übe Binär-, Dezimal- und Hexadezimal-Umrechnungen spielerisch." />
+	<meta property="og:type" content="website" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="Umasa Games" />
+	<meta name="twitter:description" content="Lerne und übe Binär-, Dezimal- und Hexadezimal-Umrechnungen spielerisch." />
+</svelte:head>
+
 <script lang="ts">
 	import TitleLogo from '$lib/title/TitleLogo.svelte';
 	import GameCard from '$lib/title/GameCard.svelte';
